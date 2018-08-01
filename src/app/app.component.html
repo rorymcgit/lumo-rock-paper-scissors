@@ -3,15 +3,9 @@
     Let's play {{ title }}!
   </h1>
 
-  <div class="user-choice">
-    <button>
-      <img src="/src/assets/rock.png">
-    </button>
-    <button>
-      <img src="/src/assets/paper.png">
-    </button>
-    <button>
-      <img src="/src/assets/scissors.png">
+  <div *ngFor="let item of choices">
+    <button (click)="setUserChoice(item)">
+      <img src="/src/assets/{{item}}.jpg">
     </button>
   </div>
 </div>
