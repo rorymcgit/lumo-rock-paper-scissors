@@ -61,4 +61,10 @@ export class AppComponent {
     this.computerChoice = this.setComputerChoice();
     this.result = this.judgeMoves();
   }
+
+  resetGame() {
+    this.userChoice = null;
+    this.computerChoice = null;
+    this.result = null;
+  }
 }

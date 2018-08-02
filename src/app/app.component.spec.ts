@@ -72,6 +72,7 @@ describe('AppComponent', () => {
 
       component.playGame();
 
+      expect(component.computerChoice).toEqual('rock');
       expect(component.result).toEqual('draw');
     }));
 
@@ -87,6 +88,7 @@ describe('AppComponent', () => {
 
       component.playGame();
 
+      expect(component.computerChoice).toEqual('paper');
       expect(component.result).toEqual('user');
     }));
 
@@ -102,7 +104,29 @@ describe('AppComponent', () => {
 
       component.playGame();
 
+      expect(component.computerChoice).toEqual('scissors');
       expect(component.result).toEqual('computer');
+    }));
+  });
+
+  fdescribe('resetGame()', () => {
+    it('sets everything to null', async(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      fixture.detectChanges();
+
+      const component = fixture.componentInstance;
+      component.setUserChoice('paper');
+      component.playGame();
+
+      expect(component.userChoice).not.toBeNull();
+      expect(component.computerChoice).not.toBeNull();
+      expect(component.result).not.toBeNull();
+
+      component.resetGame();
+
+      expect(component.userChoice).toBeNull();
+      expect(component.computerChoice).toBeNull();
+      expect(component.result).toBeNull();
     }));
   });
 });
