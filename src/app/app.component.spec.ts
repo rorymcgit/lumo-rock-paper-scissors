@@ -35,7 +35,7 @@ describe('AppComponent', () => {
       fixture.detectChanges();
 
       const compiled = fixture.debugElement.nativeElement;
-      const images = compiled.querySelectorAll('img');
+      const images = compiled.querySelectorAll('input');
       const imageSourceOne = images[0].getAttribute('src');
       const imageSourceTwo = images[1].getAttribute('src');
       const imageSourceThree = images[2].getAttribute('src');
@@ -51,21 +51,58 @@ describe('AppComponent', () => {
       const component = fixture.componentInstance;
 
       const compiled = fixture.debugElement.nativeElement;
-      const rockBtn = compiled.querySelector('button'); // get first button
-      rockBtn.click();
+       // get first choice
+      const rock = compiled.querySelector('input');
+      rock.click();
 
       expect(component.userChoice).toEqual('rock');
     }));
   });
 
-  describe('setComputerChoice()', () => {
-    it('always returns either "rock", "paper" or "scissors"', async(() => {
+  describe('playGame() sets the result', () => {
+    it('for a draw', async(() => {
       const fixture = TestBed.createComponent(AppComponent);
       fixture.detectChanges();
 
       const component = fixture.componentInstance;
+      component.setUserChoice('rock');
 
-      expect(component.setComputerChoice()).toMatch(/rock|paper|scissors/);
+      // stub CPU choice: rock
+      spyOn(Math, 'floor').and.returnValue(0);
+
+      component.playGame();
+
+      expect(component.result).toEqual('draw');
+    }));
+
+    it('for a user win', async(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      fixture.detectChanges();
+
+      const component = fixture.componentInstance;
+      component.setUserChoice('scissors');
+
+      // stub CPU choice: paper
+      spyOn(Math, 'floor').and.returnValue(1);
+
+      component.playGame();
+
+      expect(component.result).toEqual('user');
+    }));
+
+    it('for a computer win', async(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      fixture.detectChanges();
+
+      const component = fixture.componentInstance;
+      component.setUserChoice('paper');
+
+      // stub CPU choice: scissors
+      spyOn(Math, 'floor').and.returnValue(2);
+
+      component.playGame();
+
+      expect(component.result).toEqual('computer');
     }));
   });
 });

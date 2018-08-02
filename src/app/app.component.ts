@@ -2,11 +2,19 @@ import { Component } from '@angular/core';
 
 type Move = 'rock' | 'paper' | 'scissors';
 
+type Result = 'user' | 'computer' | 'draw';
+
 interface WinningMoves {
   rock: Move;
   paper: Move;
   scissors: Move;
 }
+
+const winningMoves: WinningMoves = {
+  rock: 'scissors',
+  paper: 'rock',
+  scissors: 'paper'
+};
 
 @Component({
   selector: 'app-root',
@@ -15,33 +23,41 @@ interface WinningMoves {
 })
 export class AppComponent {
   title = 'Rock-Paper-Scissors';
-  userChoice: Move;
   choices: Move[];
-  winningMoves: WinningMoves;
+  userChoice: Move;
+  result: Result;
 
   constructor() {
     this.choices = ['rock', 'paper', 'scissors'];
-
-    this.winningMoves = {
-      rock: 'scissors',
-      paper: 'rock',
-      scissors: 'paper'
-    };
   }
 
-  setUserChoice(m: Move) {
-    // DEBUG
-    console.log('clicked: ', m);
-
-    this.userChoice = m;
-  }
-
-  setComputerChoice(): Move {
+  private setComputerChoice(): Move {
     const randomIndex = Math.floor(Math.random() * 3);
 
     // DEBUG
-    console.log('computer chose: ', this.choices[randomIndex]);
+    console.log('CPU CHOSE: ', this.choices[randomIndex]);
 
     return this.choices[randomIndex];
+  }
+
+  private judgeMoves(compChoice: Move): Result {
+    if (this.userChoice === compChoice) {
+      return 'draw';
+    }
+
+    if (winningMoves[this.userChoice] === compChoice) {
+      return 'user';
+    }
+
+    return 'computer';
+  }
+
+  setUserChoice(m: Move) {
+    this.userChoice = m;
+  }
+
+  playGame() {
+    const computerChoice = this.setComputerChoice();
+    this.result = this.judgeMoves(computerChoice);
   }
 }

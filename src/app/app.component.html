@@ -1,11 +1,20 @@
-<div>
+<div class="rock-paper-scissors-game">
   <h1>
     Let's play {{ title }}!
   </h1>
 
-  <div *ngFor="let item of choices">
-    <button (click)="setUserChoice(item)">
-      <img src="/src/assets/{{item}}.jpg">
+  <div class="choices">
+    <input type="image" *ngFor="let item of choices" (click)="setUserChoice(item)" src="/src/assets/{{item}}.jpg"/>
+  </div>
+
+  <div class="play-game">
+    <button class="throw" (click)="playGame()">
+      Throw down
     </button>
+  </div>
+
+  <div>
+    RESULT IS:
+    {{result}}
   </div>
 </div>
