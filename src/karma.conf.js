@@ -5,6 +5,9 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    files: [
+      {pattern: './assets/*', watched: false, included: false, served: true}
+    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
@@ -17,7 +20,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     proxies:  {
-      '/src/assets/': 'http://localhost:9876/src/assets/'
+      '/src/assets/': '/base/assets/'
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage'),
