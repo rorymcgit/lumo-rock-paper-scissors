@@ -5,9 +5,24 @@
         display: flex;
         justify-content: space-around;
         margin-bottom: 24px;
+
+        .hidden {
+            visibility: hidden;
+        }
     }
 
     .play-game {
         margin-bottom: 24px;
+    }
+
+    .computer-choice {
+        .text {
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .image {
+            margin-bottom: 24px;
+        }
     }
 }

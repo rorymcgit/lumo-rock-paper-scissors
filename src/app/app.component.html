@@ -3,14 +3,25 @@
     Let's play {{ title }}!
   </h1>
 
+  ||{{userChoice}}||
+
   <div class="choices">
-    <input type="image" *ngFor="let item of choices" (click)="setUserChoice(item)" src="/src/assets/{{item}}.jpg"/>
+    <input type="image"
+      [ngClass]="{'hidden': userChoice && item !== userChoice}"
+      *ngFor="let item of choices"
+      (click)="setUserChoice(item)"
+      src="/src/assets/{{item}}.jpg"/>
   </div>
 
   <div class="play-game">
-    <button class="throw" (click)="playGame()">
+    <button [disabled]="!userChoice" class="throw" (click)="playGame()">
       Throw down
     </button>
+  </div>
+
+  <div *ngIf="computerChoice" class="computer-choice">
+    <span class="text">CPU chose...</span>
+    <img class="image" src="/src/assets/{{computerChoice}}.jpg"/>
   </div>
 
   <div>

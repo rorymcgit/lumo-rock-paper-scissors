@@ -25,6 +25,7 @@ export class AppComponent {
   title = 'Rock-Paper-Scissors';
   choices: Move[];
   userChoice: Move;
+  computerChoice: Move;
   result: Result;
 
   constructor() {
@@ -40,12 +41,12 @@ export class AppComponent {
     return this.choices[randomIndex];
   }
 
-  private judgeMoves(compChoice: Move): Result {
-    if (this.userChoice === compChoice) {
+  private judgeMoves(): Result {
+    if (this.userChoice === this.computerChoice) {
       return 'draw';
     }
 
-    if (winningMoves[this.userChoice] === compChoice) {
+    if (winningMoves[this.userChoice] === this.computerChoice) {
       return 'user';
     }
 
@@ -57,7 +58,7 @@ export class AppComponent {
   }
 
   playGame() {
-    const computerChoice = this.setComputerChoice();
-    this.result = this.judgeMoves(computerChoice);
+    this.computerChoice = this.setComputerChoice();
+    this.result = this.judgeMoves();
   }
 }
