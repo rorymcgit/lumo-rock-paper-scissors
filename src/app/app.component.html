@@ -1,10 +1,9 @@
 <div class="rock-paper-scissors-game">
   <h1>
-    Let's play {{ title }}!
+    {{ title }}
   </h1>
 
-  ||{{userChoice}}||
-
+  <div class="choose-text">Choose your weapon</div>
   <div class="choices">
     <input type="image"
       [ngClass]="{'hidden': userChoice && item !== userChoice}"
@@ -14,7 +13,9 @@
   </div>
 
   <div class="play-game">
-    <button [disabled]="!userChoice" class="throw" (click)="playGame()">
+    <button class="btn"
+      [disabled]="!userChoice || result"
+      (click)="playGame()">
       Throw down
     </button>
   </div>
@@ -24,13 +25,17 @@
     <img class="image" src="/src/assets/{{computerChoice}}.jpg"/>
   </div>
 
-  <div>
-    RESULT IS:
-    {{result}}
+  <div class="results">
+    <div *ngIf="result === 'user'">
+      YOU WON!!! Well played sir.
+    </div>
+    <div *ngIf="result === 'computer'">
+      The computer won. Tough luck...
+    </div>
+    <div *ngIf="result === 'draw'">
+      Nobody won! It's a draw! Wasn't that exciting?
+    </div>
   </div>
 
-
-  <div *ngIf="result">
-    <button (click)="resetGame()">Play again?</button>
-  </div>
+  <button *ngIf="result" class="btn" (click)="resetGame()">Play again?</button>
 </div>

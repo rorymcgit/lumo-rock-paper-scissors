@@ -1,14 +1,5 @@
 import { Component } from '@angular/core';
-
-type Move = 'rock' | 'paper' | 'scissors';
-
-type Result = 'user' | 'computer' | 'draw';
-
-interface WinningMoves {
-  rock: Move;
-  paper: Move;
-  scissors: Move;
-}
+import { Move, WinningMoves, Result } from './app.types';
 
 const winningMoves: WinningMoves = {
   rock: 'scissors',
@@ -34,10 +25,6 @@ export class AppComponent {
 
   private setComputerChoice(): Move {
     const randomIndex = Math.floor(Math.random() * 3);
-
-    // DEBUG
-    console.log('CPU CHOSE: ', this.choices[randomIndex]);
-
     return this.choices[randomIndex];
   }
 

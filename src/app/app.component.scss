@@ -1,6 +1,10 @@
 .rock-paper-scissors-game {
+    font-family: 'Open Sans', sans-serif;
     text-align: center;
 
+    .choose-text {
+        margin-bottom: 12px;
+    }
     .choices {
         display: flex;
         justify-content: space-around;
@@ -13,6 +17,25 @@
 
     .play-game {
         margin-bottom: 24px;
+    }
+
+    .btn {
+        color: #FFF;
+        background-color: #0C1D31;
+        border: 1px solid #0C1D31;
+        border-radius: 12px;
+        padding: 6px 12px;
+        cursor: pointer;
+
+        &:disabled {
+            color: #0C1D31;
+            background-color: #9FA0A0;
+            cursor: initial;
+        }
+    }
+
+    .results {
+        margin-bottom: 18px;
     }
 
     .computer-choice {

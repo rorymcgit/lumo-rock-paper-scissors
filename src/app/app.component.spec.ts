@@ -26,7 +26,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Let\'s play Rock-Paper-Scissors!');
+    expect(compiled.querySelector('h1').textContent).toContain('Rock-Paper-Scissors');
   }));
 
   describe('choice buttons', () => {
@@ -109,8 +109,8 @@ describe('AppComponent', () => {
     }));
   });
 
-  fdescribe('resetGame()', () => {
-    it('sets everything to null', async(() => {
+  describe('resetGame()', () => {
+    it('sets all variables to null', async(() => {
       const fixture = TestBed.createComponent(AppComponent);
       fixture.detectChanges();
 
@@ -118,9 +118,9 @@ describe('AppComponent', () => {
       component.setUserChoice('paper');
       component.playGame();
 
-      expect(component.userChoice).not.toBeNull();
-      expect(component.computerChoice).not.toBeNull();
-      expect(component.result).not.toBeNull();
+      expect(component.userChoice).toBeTruthy();
+      expect(component.computerChoice).toBeTruthy();
+      expect(component.result).toBeTruthy();
 
       component.resetGame();
 

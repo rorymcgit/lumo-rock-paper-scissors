@@ -9,11 +9,15 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
+      require('karma-phantomjs-launcher'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
+    },
+    proxies:  {
+      '/src/assets/': 'http://localhost:9876/src/assets/'
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage'),
@@ -25,7 +29,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
     singleRun: false
   });
 };
