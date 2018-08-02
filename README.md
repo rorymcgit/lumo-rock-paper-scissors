@@ -24,10 +24,12 @@ Run tests
 `ng test`
 
 ---
+
 #### PLAY
 Start app and open in default browser  
 `ng serve --open`
 
+---
 
 #### MY APPROACH
 I started off thinking about how I would like to play this game in a browser and how that would differ to real life. I decided the timing would have to be different, as choosing your 'weapon' in this setting is more difficult than opening your hand in a certain way.  
