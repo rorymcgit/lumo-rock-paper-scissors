@@ -23,7 +23,7 @@ export class AppComponent {
     this.choices = ['rock', 'paper', 'scissors'];
   }
 
-  private setComputerChoice(): Move {
+  private getComputerChoice(): Move {
     const randomIndex = Math.floor(Math.random() * 3);
     return this.choices[randomIndex];
   }
@@ -45,7 +45,7 @@ export class AppComponent {
   }
 
   playGame() {
-    this.computerChoice = this.setComputerChoice();
+    this.computerChoice = this.getComputerChoice();
     this.result = this.judgeMoves();
   }
 
