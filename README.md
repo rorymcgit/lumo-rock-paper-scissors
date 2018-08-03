@@ -14,8 +14,7 @@ Install Angular CLI globally
 `npm install -g @angular/cli`
 
 Install project dependencies  
-`cd lumo-rock-paper-scissors`
-`npm install`
+`cd lumo-rock-paper-scissors && npm install`
 
 ---
 
