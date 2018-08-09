@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { Move, WinningMoves, Result } from './app.types';
 
-const winningMoves: WinningMoves = {
-  rock: 'scissors',
-  paper: 'rock',
-  scissors: 'paper'
-};
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,14 +8,15 @@ const winningMoves: WinningMoves = {
 })
 export class AppComponent {
   title = 'Rock-Paper-Scissors';
-  choices: Move[];
+  result: Result;
   userChoice: Move;
   computerChoice: Move;
-  result: Result;
-
-  constructor() {
-    this.choices = ['rock', 'paper', 'scissors'];
-  }
+  choices: Move[] = ['rock', 'paper', 'scissors'];
+  winningMoves: WinningMoves = {
+    rock: 'scissors',
+    paper: 'rock',
+    scissors: 'paper'
+  };
 
   private getComputerChoice(): Move {
     const randomIndex = Math.floor(Math.random() * 3);
@@ -33,7 +28,7 @@ export class AppComponent {
       return 'draw';
     }
 
-    if (winningMoves[this.userChoice] === this.computerChoice) {
+    if (this.winningMoves[this.userChoice] === this.computerChoice) {
       return 'user';
     }
 
